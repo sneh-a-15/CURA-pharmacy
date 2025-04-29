@@ -1,0 +1,121 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Manage Inventory{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold mb-4 text-blue-700">Manage Products</h2>
+
+    <!-- Medicines -->
+    <h3 class="text-xl font-semibold mb-2 text-gray-800">Medicines</h3>
+    <table class="w-full mb-6 text-sm border border-gray-200">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+                <th class="border px-4 py-2">Name</th>
+                <th class="border px-4 py-2">Description</th>
+                <th class="border px-4 py-2">Price</th>
+                <th class="border px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicine in medicines %}
+            <tr class="hover:bg-gray-50">
+                <td class="border px-4 py-2">{{ medicine.medicine_name }}</td>
+                <td class="border px-4 py-2">{{ medicine.medicine_descripton }}</td>
+                <td class="border px-4 py-2">₹{{ medicine.medicine_price }}</td>
+                <td class="border px-4 py-2 space-x-2">
+                    <a href="{% url 'edit_product' medicine.id 'medicines' %}" class="text-blue-600 hover:underline">Edit</a>
+                    <a href="{% url 'delete_product' medicine.id 'medicines' %}" class="text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center py-4 text-gray-500">No medicines found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="text-xl font-semibold mb-2 text-gray-800">Products</h3>
+    <table class="w-full mb-6 text-sm border border-gray-200">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+                <th class="border px-4 py-2">Name</th>
+                <th class="border px-4 py-2">Description</th>
+                <th class="border px-4 py-2">Price</th>
+                <th class="border px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in product_items %}
+            <tr class="hover:bg-gray-50">
+                <td class="border px-4 py-2">{{ product.prod_name }}</td>
+                <td class="border px-4 py-2">{{ product.prod_descripton }}</td>
+                <td class="border px-4 py-2">₹{{ product.prod_price }}</td>
+                <td class="border px-4 py-2 space-x-2">
+                    <a href="{% url 'edit_product' product.id 'product_items' %}" class="text-blue-600 hover:underline">Edit</a>
+                    <a href="{% url 'delete_product' product.id 'product_items' %}" class="text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center py-4 text-gray-500">No products found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class="text-xl font-semibold mb-2 text-gray-800">Ayurveda</h3>
+    <table class="w-full mb-6 text-sm border border-gray-200">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+                <th class="border px-4 py-2">Name</th>
+                <th class="border px-4 py-2">Description</th>
+                <th class="border px-4 py-2">Price</th>
+                <th class="border px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ayurveda in ayurveda %}
+            <tr class="hover:bg-gray-50">
+                <td class="border px-4 py-2">{{ ayurveda.med_name }}</td>
+                <td class="border px-4 py-2">{{ ayurveda.med_descripton }}</td>
+                <td class="border px-4 py-2">₹{{ ayurveda.med_price }}</td>
+                <td class="border px-4 py-2 space-x-2">
+                    <a href="{% url 'edit_product' ayurveda.id 'ayurveda' %}" class="text-blue-600 hover:underline">Edit</a>
+                    <a href="{% url 'delete_product' ayurveda.id 'ayurveda' %}" class="text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center py-4 text-gray-500">No ayurvedic products found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h3 class="text-xl font-semibold mb-2 text-gray-800">Skincare</h3>
+    <table class="w-full mb-6 text-sm border border-gray-200">
+        <thead class="bg-gray-100 text-gray-700">
+            <tr>
+                <th class="border px-4 py-2">Name</th>
+                <th class="border px-4 py-2">Description</th>
+                <th class="border px-4 py-2">Price</th>
+                <th class="border px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for skincare in skincare %}
+            <tr class="hover:bg-gray-50">
+                <td class="border px-4 py-2">{{ skincare.skinc_name }}</td>
+                <td class="border px-4 py-2">{{ skincare.skinc_descripton }}</td>
+                <td class="border px-4 py-2">₹{{ skincare.skinc_price }}</td>
+                <td class="border px-4 py-2 space-x-2">
+                    <a href="{% url 'edit_product' skincare.id 'skincare' %}" class="text-blue-600 hover:underline">Edit</a>
+                    <a href="{% url 'delete_product' skincare.id 'skincare' %}" class="text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center py-4 text-gray-500">No skincare products found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+   
+</div>
+{% endblock %}

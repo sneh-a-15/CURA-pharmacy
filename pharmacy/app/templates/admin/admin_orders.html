@@ -1,0 +1,55 @@
+<!-- orders.html -->
+{% extends 'admin/base.html' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-8 p-4 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold mb-6">Order Details</h2>
+
+    <table class="min-w-full table-auto">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="py-2 px-4 text-left">Order ID</th>
+                <th class="py-2 px-4 text-left">Items</th>
+                <th class="py-2 px-4 text-left">Quantity</th>
+                <th class="py-2 px-4 text-left">Price</th>
+                <th class="py-2 px-4 text-left">Address</th>
+                <th class="py-2 px-4 text-left">Phone</th>
+                <th class="py-2 px-4 text-left">Delivery Status</th>
+                <th class="py-2 px-4 text-left">Pending</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr class="border-b">
+                    <td class="py-2 px-4">{{ order.id }}</td>
+                    <td class="py-2 px-4">{{ order.items }}</td>
+                    <td class="py-2 px-4">{{ order.quantity }}</td>
+                    <td class="py-2 px-4">{{ order.price }}</td>
+                    <td class="py-2 px-4">{{ order.address }}</td>
+                    <td class="py-2 px-4">{{ order.phone_num }}</td>
+                    <td class="py-2 px-4">
+                        {% if order.delivery %}
+                            <span class="text-green-500">Delivered</span>
+                        {% else %}
+                            <span class="text-red-500">Not Delivered</span>
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-4">
+                        {% if order.pending %}
+                            <span class="text-yellow-500">Pending</span>
+                        {% else %}
+                            <span class="text-green-500">Completed</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8" class="py-2 px-4 text-center">No orders found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
